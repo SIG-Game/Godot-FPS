@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cm44nds8rv0vx"]
+
+[ext_resource type="Material" uid="uid://bhevqamb2wvhf" path="res://Materials/Grass.tres" id="1_u52ul"]
+[ext_resource type="PackedScene" uid="uid://cgk8c4d0x7d7o" path="res://player.tscn" id="2_vonw3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vonw3"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_oi3di"]
+sky_material = SubResource("ProceduralSkyMaterial_vonw3")
+
+[sub_resource type="Environment" id="Environment_0b4ue"]
+background_mode = 2
+sky = SubResource("Sky_oi3di")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5xgho"]
+size = Vector2(20, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u52ul"]
+size = Vector3(20, 0.001, 20)
+
+[node name="Level" type="Node3D" unique_id=60756822]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1740548421]
+environment = SubResource("Environment_0b4ue")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1288922752]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." unique_id=1510334316 instance=ExtResource("2_vonw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9124, 1.0004997, 0.07252884)
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=1644168824]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=526161058]
+mesh = SubResource("PlaneMesh_5xgho")
+surface_material_override/0 = ExtResource("1_u52ul")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1840860431]
+shape = SubResource("BoxShape3D_u52ul")

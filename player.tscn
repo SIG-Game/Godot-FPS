@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cgk8c4d0x7d7o"]
+
+[ext_resource type="Script" uid="uid://bg3trwcvd52qw" path="res://player.gd" id="1_4flbx"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_eursf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_houcm"]
+albedo_color = Color(0.16470589, 0.21960784, 0.16078432, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_pt5f3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_plgl1"]
+albedo_color = Color(0, 0.80784315, 1, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_80gp8"]
+
+[node name="Player" type="CharacterBody3D" unique_id=1510334316]
+script = ExtResource("1_4flbx")
+
+[node name="Eyes" type="MeshInstance3D" parent="." unique_id=847799995]
+transform = Transform3D(-2.0107239e-08, -0.46, 0, 0.46, -2.0107239e-08, 0, 0, 0, 0.46, 0, 0.51589626, -0.3166588)
+mesh = SubResource("CapsuleMesh_eursf")
+surface_material_override/0 = SubResource("StandardMaterial3D_houcm")
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=218418244]
+mesh = SubResource("CapsuleMesh_pt5f3")
+surface_material_override/0 = SubResource("StandardMaterial3D_plgl1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=577989604]
+shape = SubResource("CapsuleShape3D_80gp8")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1446380381]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4742862, -0.6912434)
