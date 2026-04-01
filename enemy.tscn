@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://84wa44d5elri"]
+
+[ext_resource type="Script" uid="uid://bo8r0oa8x5jcn" path="res://enemy.gd" id="1_7k104"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7xaro"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7k104"]
+albedo_color = Color(0.16470589, 0.21960784, 0.16078432, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4gyqm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qi2p4"]
+albedo_color = Color(1, 0.61609834, 0.507489, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iifgy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4gyqm"]
+radius = 0.63
+height = 2.22
+
+[node name="Enemy" type="StaticBody3D" unique_id=2140471021]
+script = ExtResource("1_7k104")
+
+[node name="Eyes" type="MeshInstance3D" parent="." unique_id=480732939]
+transform = Transform3D(-2.0107239e-08, -0.46, 0, 0.46, -2.0107239e-08, 0, 0, 0, 0.46, 0, 0.51589626, -0.3166588)
+mesh = SubResource("CapsuleMesh_7xaro")
+surface_material_override/0 = SubResource("StandardMaterial3D_7k104")
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=1414978319]
+mesh = SubResource("CapsuleMesh_4gyqm")
+surface_material_override/0 = SubResource("StandardMaterial3D_qi2p4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=709016840]
+shape = SubResource("CapsuleShape3D_iifgy")
+
+[node name="HurtArea" type="Area3D" parent="." unique_id=1927963914]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtArea" unique_id=1244460612]
+shape = SubResource("CapsuleShape3D_4gyqm")
+
+[connection signal="area_entered" from="HurtArea" to="." method="_on_hurt_area_area_entered"]

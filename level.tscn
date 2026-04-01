@@ -2,6 +2,7 @@
 
 [ext_resource type="Material" uid="uid://bhevqamb2wvhf" path="res://Materials/Grass.tres" id="1_u52ul"]
 [ext_resource type="PackedScene" uid="uid://cgk8c4d0x7d7o" path="res://player.tscn" id="2_vonw3"]
+[ext_resource type="PackedScene" uid="uid://84wa44d5elri" path="res://enemy.tscn" id="3_oi3di"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vonw3"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -42,3 +43,6 @@ surface_material_override/0 = ExtResource("1_u52ul")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1840860431]
 shape = SubResource("BoxShape3D_u52ul")
+
+[node name="Enemy" parent="." unique_id=2140471021 instance=ExtResource("3_oi3di")]
+transform = Transform3D(-0.9659258, 0, 0.25881913, 0, 1, 0, -0.25881913, 0, -0.9659258, -0.16453695, 1.0005, -5.28964)

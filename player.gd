@@ -1,5 +1,9 @@
 extends CharacterBody3D
 
+@onready var bulletSpawnPoint : Marker3D = $Hand/BulletSpawnPoint
+
+const bullet = preload("res://bullet.tscn")
+
 const JUMP_FORCE: float = 4.5
 const SPEED : float = 5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -27,6 +31,12 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	if event.is_action_pressed("shoot"):
+		var instance = bullet.instantiate()
+		instance.position = bulletSpawnPoint.global_position
+		instance.rotation = bulletSpawnPoint.global_rotation
+		self.get_tree().root.add_child(instance)
 			
 	
 
